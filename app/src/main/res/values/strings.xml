@@ -13,4 +13,8 @@
     <string name="menu_item_sell">Vender</string>
     <string name="menu_item_message">Mensagens</string>
     <string name="menu_item_perfil">Perfil</string>
+    <string name="loading_msg">Segura aí, que eu estou carregando ;)</string>
+    <string name="error_title">turbulências na rede</string>
+    <string name="error_msg">nosso cyber voo tá chacoalhando.\n dê uma checada na sua internet \npra continuar com a gente :P</string>
+    <string name="error_button_title">tentar de novo</string>
 </resources>

@@ -13,21 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.enjoei.app.data.remote.model
+package br.com.enjoei.app.presentation.extensions
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import java.text.DecimalFormat
+import java.text.NumberFormat.getCurrencyInstance
+import java.util.*
 
-@JsonClass(generateAdapter = true)
-data class ProductResponse(
-    val id: Int = 0,
-    val content: String = "",
-    val title: String = "",
-    val size: String? = "",
-    val price: Double = 0.0,
-    @field: Json(name = "original_price") val originalPrice: Double = 0.0,
-    @field: Json(name = "discount_percentage") val discount: Double = 0.0,
-    @field: Json(name = "likes_count") val likes: Int = 0,
-    val photos: List<PhotoResponse> = emptyList(),
-    val user: UserResponse = UserResponse()
-)
+val ptBRLocale = Locale("pt", "BR")
+
+val noSymbolFormatter =
+    (getCurrencyInstance(ptBRLocale) as DecimalFormat).apply {
+        maximumFractionDigits = 0
+        minimumFractionDigits = 0
+        positivePrefix = ""
+        negativePrefix = "-"
+        decimalFormatSymbols.currencySymbol = ""
+    }
+
+fun Double.asBRL(includeCurrency: Boolean = false): String = if (includeCurrency)
+    "R$ " + noSymbolFormatter.format(this) else noSymbolFormatter.format(this)

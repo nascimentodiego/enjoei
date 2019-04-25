@@ -24,6 +24,7 @@ android {
     }
 
     def API_BASE = "API_BASE"
+    def API_BASE_CLOUDINARY = "API_BASE_CLOUDINARY"
 
     buildTypes {
         release {
@@ -34,6 +35,8 @@ android {
 
     applicationVariants.all { variant ->
         variant.buildConfigField "String", API_BASE, "\"$getUrlProperty\""
+        variant.buildConfigField "String", API_BASE_CLOUDINARY, "\"$getUrlCloudinaryProperty\""
+
     }
 }
 
@@ -48,6 +51,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment$nav_version"
     implementation "androidx.navigation:navigation-ui$nav_version"
     implementation "com.github.ittianyu:BottomNavigationViewEx:$bottom_navigation_view_ex"
+    implementation "com.cloudinary:cloudinary-android:$cloudinary"
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.okhttp3:okhttp:$okhttp"

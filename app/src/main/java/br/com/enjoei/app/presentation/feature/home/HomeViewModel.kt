@@ -17,7 +17,6 @@ package br.com.enjoei.app.presentation.feature.home
 
 import br.com.enjoei.app.data.remote.model.ProductListResponse
 import br.com.enjoei.app.domain.interactor.HomeUseCaseContract
-import br.com.enjoei.app.domain.model.Product
 import br.com.enjoei.app.presentation.base.*
 import br.com.enjoei.app.presentation.feature.home.HomeViewModel.*
 import br.com.enjoei.app.presentation.util.SingleEvent
@@ -31,12 +30,20 @@ class HomeViewModel(
     init {
         _state.postValue(HomeScreenState())
 
+        subscribeSideEffect()
+        subscribeState()
+    }
+
+    private fun subscribeSideEffect() {
         addDisposable(
             observerChooseProduct()
                 .subscribe {
                     _sideEffect.postValue(SingleEvent(it))
                 }
         )
+    }
+
+    private fun subscribeState() {
         addDisposable(
             Observable.merge(
                 observerInitScreen(),
@@ -63,10 +70,10 @@ class HomeViewModel(
         baseIntentions
             .ofType(HomeIntention.LoadMore::class.java)
             .switchMap {
-                useCase.getProductListByPage().doOnSubscribe { _state.postValue(loadingState()) }
+                useCase.getProductListByPage().doOnSubscribe { _state.postValue(loadingMoreState()) }
             }.map {
-                loadState(it)
-            }
+                loadMoreState(it)
+            }.onErrorReturn { errorState(it) }
 
     private fun loadingState() =
         reducer.reducer(
@@ -74,11 +81,24 @@ class HomeViewModel(
             HomeScreenChange.Loading
         )
 
+    private fun loadingMoreState() =
+        reducer.reducer(
+            _state.value,
+            HomeScreenChange.LoadingMore
+        )
+
     private fun loadState(response: ProductListResponse) =
         reducer.reducer(_state.value, HomeScreenChange.HomeScreenFetched(response))
 
-    private fun errorState(throwable: Throwable?) =
-        reducer.reducer(_state.value, HomeScreenChange.Error(throwable))
+    private fun loadMoreState(response: ProductListResponse) =
+        reducer.reducer(_state.value, HomeScreenChange.HomeScreenFetchMore(response))
+
+    private fun errorState(throwable: Throwable?): HomeScreenState {
+        subscribeSideEffect()
+        subscribeState()
+
+        return reducer.reducer(_state.value, HomeScreenChange.Error(throwable))
+    }
 
     private fun observerChooseProduct() =
         baseIntentions
@@ -98,17 +118,19 @@ class HomeViewModel(
     }
 
     data class HomeScreenState(
-        val productList: List<Product> = emptyList(),
+        val productList: List<HomeReducer.ProductItemView> = emptyList(),
         val isLoading: Boolean = true,
+        val isLoadingMore: Boolean = true,
         val isLoadError: Boolean = false,
-        val hasMorePage: Boolean = false,
         val errorMessage: String = ""
 
     ) : BaseState
 
     sealed class HomeScreenChange : BaseChange {
         object Loading : HomeScreenChange()
+        object LoadingMore : HomeScreenChange()
         data class HomeScreenFetched(val response: ProductListResponse) : HomeScreenChange()
+        data class HomeScreenFetchMore(val response: ProductListResponse) : HomeScreenChange()
         data class Error(val throwable: Throwable?) : HomeScreenChange()
     }
 }

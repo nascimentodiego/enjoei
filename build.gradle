@@ -46,7 +46,9 @@ ext {
     glide = "4.7.1"
     koin = "2.0.0-rc-1"
     lifecycle_version = "2.0.0"
-    ktlint_version = '0.31.0'
+    ktlint_version = "0.31.0"
+    cloudinary = "1.26.0"
+    lottie_version = "3.0.0"
 
     junit = "4.12"
     runner = "1.1.1"

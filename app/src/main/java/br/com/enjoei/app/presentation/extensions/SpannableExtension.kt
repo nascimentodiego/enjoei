@@ -13,21 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.enjoei.app.data.remote.model
+package br.com.enjoei.app.presentation.extensions
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.StrikethroughSpan
 
-@JsonClass(generateAdapter = true)
-data class ProductResponse(
-    val id: Int = 0,
-    val content: String = "",
-    val title: String = "",
-    val size: String? = "",
-    val price: Double = 0.0,
-    @field: Json(name = "original_price") val originalPrice: Double = 0.0,
-    @field: Json(name = "discount_percentage") val discount: Double = 0.0,
-    @field: Json(name = "likes_count") val likes: Int = 0,
-    val photos: List<PhotoResponse> = emptyList(),
-    val user: UserResponse = UserResponse()
-)
+
+fun SpannableString.strikethroughSpan() {
+    this.setSpan(StrikethroughSpan(), 0, this.length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+}
