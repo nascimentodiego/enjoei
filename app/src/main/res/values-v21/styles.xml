@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomButton" parent="Base.Widget.AppCompat.Button">
+        <item name="android:textAppearance">@style/Text.SemiBold.16sp</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/pink</item>
+        <item name="android:padding">@dimen/normal</item>
+    </style>
+</resources>

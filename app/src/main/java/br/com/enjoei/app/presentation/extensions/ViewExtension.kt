@@ -15,9 +15,13 @@
  */
 package br.com.enjoei.app.presentation.extensions
 
+import android.net.Uri
 import android.view.View
 import android.widget.ImageView
+import br.com.enjoei.app.BuildConfig
+import br.com.enjoei.app.presentation.feature.home.HomeReducer
 import com.bumptech.glide.Glide
+import com.cloudinary.android.MediaManager
 
 fun View.makeVisible() {
     this.visibility = View.VISIBLE
@@ -36,3 +40,49 @@ fun ImageView.loadImage(path: String) {
         .load(path)
         .into(this)
 }
+
+fun ImageView.loadImageFromAsset(picture: String) {
+    Glide.with(this)
+        .load(Uri.parse("file:///android_asset/$picture"))
+        .into(this)
+}
+
+fun ImageView.loadUserPhoto(photo: HomeReducer.PhotoView) {
+    val url = BuildConfig.API_BASE_CLOUDINARY + MediaManager
+        .get()
+        .url()
+        .transformation()
+        .width(200)
+        .height(200)
+        .crop(photo.crop)
+        .gravity(photo.gravity)
+        .radius("max")
+        .generate() + "/" + photo.id + ".png"
+
+
+
+    Glide.with(this)
+        .load(url)
+        .into(this)
+}
+
+fun ImageView.loadProductPhoto(photo: HomeReducer.PhotoView) {
+    val url = BuildConfig.API_BASE_CLOUDINARY + MediaManager
+        .get()
+        .url()
+        .transformation()
+        .width(400)
+        .height(400)
+        .crop(photo.crop)
+        .gravity(photo.gravity)
+        .radius(5)
+        .generate() + "/" + photo.id + ".png"
+
+
+
+    Glide.with(this)
+        .load(url)
+        .into(this)
+}
+
+

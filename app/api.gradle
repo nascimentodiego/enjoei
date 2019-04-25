@@ -8,3 +8,9 @@ file(path).withInputStream {
 ext.getUrlProperty = { ->
     return buildProperties.getProperty("base.url")
 }
+
+ext.getUrlCloudinaryProperty = { ->
+    return buildProperties.getProperty("base.urlCloudinary")
+}
+
+

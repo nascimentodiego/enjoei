@@ -33,7 +33,7 @@ open class SingleEvent<out T>(private val content: T) {
     }
 
     /**
-     * Returns the content, even if it's already been handled.
+     * Returns the content, even if it'assets already been handled.
      */
     fun peekContent(): T = content
 }

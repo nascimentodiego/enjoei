@@ -18,11 +18,13 @@ package br.com.enjoei.app.presentation
 import android.app.Application
 import br.com.enjoei.app.BuildConfig
 import br.com.enjoei.app.presentation.di.*
+import com.cloudinary.android.MediaManager
 import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins
 import org.koin.core.context.startKoin
 import java.io.IOException
 import java.net.SocketException
+
 
 class EnjoeiApplication : Application() {
 
@@ -30,6 +32,13 @@ class EnjoeiApplication : Application() {
         super.onCreate()
         setupKoin()
         setupRxJavaDefaultErrorHandler()
+        setupMediaManager()
+    }
+
+    private fun setupMediaManager() {
+        val config = HashMap<String, String>()
+        config["cloud_name"] = "demo"
+        MediaManager.init(this, config)
     }
 
     private fun setupKoin() {
@@ -65,13 +74,13 @@ class EnjoeiApplication : Application() {
                 return@setErrorHandler
             }
             if (e is NullPointerException || e is IllegalArgumentException) {
-                // that's likely a bug in the application
+                // that'assets likely a bug in the application
                 val currentThread = Thread.currentThread()
                 currentThread.uncaughtExceptionHandler.uncaughtException(currentThread, e)
                 return@setErrorHandler
             }
             if (e is IllegalStateException) {
-                // that's a bug in RxJava or in a custom operator
+                // that'assets a bug in RxJava or in a custom operator
                 val currentThread = Thread.currentThread()
                 currentThread.uncaughtExceptionHandler.uncaughtException(currentThread, e)
                 return@setErrorHandler
