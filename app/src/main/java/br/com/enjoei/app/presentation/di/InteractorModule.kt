@@ -15,7 +15,10 @@
  */
 package br.com.enjoei.app.presentation.di
 
+import br.com.enjoei.app.domain.interactor.HomeUseCase
+import br.com.enjoei.app.domain.interactor.HomeUseCaseContract
 import org.koin.dsl.module
 
 val interactorModule = module {
+    factory { HomeUseCase(get()) as HomeUseCaseContract }
 }

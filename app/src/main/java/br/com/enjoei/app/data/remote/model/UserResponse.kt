@@ -18,7 +18,8 @@ package br.com.enjoei.app.data.remote.model
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ProductListResponse(
-    val products: List<ProductResponse> = emptyList(),
-    val paginationResponse: PaginationResponse = PaginationResponse()
+data class UserResponse(
+    val id: Long = 0L,
+    val name: String = "",
+    val avatar: PhotoResponse = PhotoResponse()
 )

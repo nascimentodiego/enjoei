@@ -6,6 +6,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 apply from: 'api.gradle'
 
 apply from: "$rootDir/tools/quality/ktlint.gradle"
@@ -43,6 +45,9 @@ dependencies {
     implementation "androidx.cardview:cardview:$cardview"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.navigation:navigation-fragment$nav_version"
+    implementation "androidx.navigation:navigation-ui$nav_version"
+    implementation "com.github.ittianyu:BottomNavigationViewEx:$bottom_navigation_view_ex"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.okhttp3:okhttp:$okhttp"

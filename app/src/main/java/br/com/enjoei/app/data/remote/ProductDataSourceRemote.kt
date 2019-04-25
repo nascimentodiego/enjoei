@@ -13,12 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.enjoei.app.data.remote.model
+package br.com.enjoei.app.data.remote
 
-import com.squareup.moshi.JsonClass
+import br.com.enjoei.app.data.ProductDataSource
+import br.com.enjoei.app.data.remote.model.ProductListResponse
+import io.reactivex.Observable
 
-@JsonClass(generateAdapter = true)
-data class ProductListResponse(
-    val products: List<ProductResponse> = emptyList(),
-    val paginationResponse: PaginationResponse = PaginationResponse()
-)
+
+class ProductDataSourceRemote(private val api: ProductApi) : ProductDataSource {
+    private val initialPage = 1
+
+    override fun getProductListByPage(page: Int): Observable<ProductListResponse> =
+        api.getProducts(page)
+
+    override fun fetchProductList(): Observable<ProductListResponse> =
+        api.getProducts(initialPage)
+
+}

@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">enjoei</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="screen_product_title">Detalhe de produtos</string>
+    <string name="screen_message_title">Mensagens</string>
+    <string name="screen_search_title">Busca de produtos</string>
+    <string name="screen_perfil_title">Perfil</string>
+    <string name="screen_sell_title">Venda de produtos</string>
+    <string name="menu_item_home">Home</string>
+    <string name="menu_item_buscar">Buscar</string>
+    <string name="menu_item_sell">Vender</string>
+    <string name="menu_item_message">Mensagens</string>
+    <string name="menu_item_perfil">Perfil</string>
 </resources>

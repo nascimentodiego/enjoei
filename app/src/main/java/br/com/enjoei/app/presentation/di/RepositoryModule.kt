@@ -15,8 +15,13 @@
  */
 package br.com.enjoei.app.presentation.di
 
+import br.com.enjoei.app.data.ProductDataSource
+import br.com.enjoei.app.data.remote.ProductDataSourceRemote
+import br.com.enjoei.app.domain.repository.HomeRepository
+import br.com.enjoei.app.domain.repository.HomeRepositoryContract
 import org.koin.dsl.module
 
 val repositoryModule = module {
-
+    single { ProductDataSourceRemote(get()) as ProductDataSource }
+    single { HomeRepository(get()) as HomeRepositoryContract }
 }
