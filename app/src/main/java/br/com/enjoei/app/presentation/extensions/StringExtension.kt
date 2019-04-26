@@ -18,7 +18,6 @@ package br.com.enjoei.app.presentation.extensions
 import android.content.Context
 import br.com.enjoei.app.R
 
-
 fun String.buildSizeText(context: Context): String {
     return if (this.isEmpty())
         ""
@@ -26,4 +25,3 @@ fun String.buildSizeText(context: Context): String {
         " - ${context.getString(R.string.screen_product_size_label) + " $this"}"
     }
 }
-

@@ -17,8 +17,15 @@ package br.com.enjoei.app.presentation.feature.home
 
 import br.com.enjoei.app.domain.interactor.HomeUseCaseContract
 import br.com.enjoei.app.domain.model.ProductList
-import br.com.enjoei.app.presentation.base.*
-import br.com.enjoei.app.presentation.feature.home.HomeViewModel.*
+
+import br.com.enjoei.app.presentation.base.BaseViewModel
+import br.com.enjoei.app.presentation.base.BaseIntention
+import br.com.enjoei.app.presentation.base.BaseSideEffect
+import br.com.enjoei.app.presentation.base.BaseChange
+import br.com.enjoei.app.presentation.base.BaseState
+import br.com.enjoei.app.presentation.feature.home.HomeViewModel.HomeIntention
+import br.com.enjoei.app.presentation.feature.home.HomeViewModel.HomeSideEffect
+import br.com.enjoei.app.presentation.feature.home.HomeViewModel.HomeScreenState
 import br.com.enjoei.app.presentation.model.ProductItemView
 import br.com.enjoei.app.presentation.util.SingleEvent
 import io.reactivex.Observable
@@ -29,7 +36,7 @@ class HomeViewModel(
 ) : BaseViewModel<HomeIntention, HomeSideEffect, HomeScreenState>() {
 
     init {
-        _state.postValue(HomeScreenState())
+        state.postValue(HomeScreenState())
 
         subscribeSideEffect()
         subscribeState()
@@ -39,7 +46,7 @@ class HomeViewModel(
         addDisposable(
             observerChooseProduct()
                 .subscribe {
-                    _sideEffect.postValue(SingleEvent(it))
+                    sideEffect.postValue(SingleEvent(it))
                 }
         )
     }
@@ -51,7 +58,7 @@ class HomeViewModel(
                 observerLoadMoreProducts()
             )
                 .subscribe {
-                    _state.postValue(it)
+                    state.postValue(it)
                 }
         )
     }
@@ -64,41 +71,41 @@ class HomeViewModel(
             }.map {
                 loadState(it)
             }
-            .doOnSubscribe { _state.postValue(loadingState()) }
+            .doOnSubscribe { state.postValue(loadingState()) }
             .onErrorReturn { errorState(it) }
 
     private fun observerLoadMoreProducts() =
         baseIntentions
             .ofType(HomeIntention.LoadMore::class.java)
             .switchMap {
-                useCase.getProductListByPage().doOnSubscribe { _state.postValue(loadingMoreState()) }
+                useCase.getProductListByPage().doOnSubscribe { state.postValue(loadingMoreState()) }
             }.map {
                 loadMoreState(it)
             }.onErrorReturn { errorState(it) }
 
     private fun loadingState() =
         reducer.reducer(
-            _state.value,
+            state.value,
             HomeScreenChange.Loading
         )
 
     private fun loadingMoreState() =
         reducer.reducer(
-            _state.value,
+            state.value,
             HomeScreenChange.LoadingMore
         )
 
     private fun loadState(response: ProductList) =
-        reducer.reducer(_state.value, HomeScreenChange.HomeScreenFetched(response))
+        reducer.reducer(state.value, HomeScreenChange.HomeScreenFetched(response))
 
     private fun loadMoreState(response: ProductList) =
-        reducer.reducer(_state.value, HomeScreenChange.HomeScreenFetchMore(response))
+        reducer.reducer(state.value, HomeScreenChange.HomeScreenFetchMore(response))
 
     private fun errorState(throwable: Throwable?): HomeScreenState {
         subscribeSideEffect()
         subscribeState()
 
-        return reducer.reducer(_state.value, HomeScreenChange.Error(throwable))
+        return reducer.reducer(state.value, HomeScreenChange.Error(throwable))
     }
 
     private fun observerChooseProduct() =

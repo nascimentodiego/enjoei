@@ -22,7 +22,6 @@ import br.com.enjoei.app.presentation.feature.home.HomeViewModel
 import br.com.enjoei.app.presentation.model.PhotoView
 import br.com.enjoei.app.presentation.model.ProductItemView
 
-
 class HomeReducerMock : HomeReducer {
     override fun reducer(
         state: HomeViewModel.HomeScreenState?,
@@ -61,7 +60,6 @@ class HomeReducerMock : HomeReducer {
                 )
             }
         } ?: HomeViewModel.HomeScreenState()
-
 
     override fun productMapper(product: Product): ProductItemView {
         val user = product.user.avatar

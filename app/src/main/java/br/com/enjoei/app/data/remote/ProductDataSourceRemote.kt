@@ -19,7 +19,6 @@ import br.com.enjoei.app.data.ProductDataSource
 import br.com.enjoei.app.domain.model.ProductList
 import io.reactivex.Observable
 
-
 class ProductDataSourceRemote(private val api: ProductApi) : ProductDataSource {
     private val initialPage = 1
 
@@ -28,5 +27,4 @@ class ProductDataSourceRemote(private val api: ProductApi) : ProductDataSource {
 
     override fun fetchProductList(): Observable<ProductList> =
         api.getProducts(initialPage)
-
 }

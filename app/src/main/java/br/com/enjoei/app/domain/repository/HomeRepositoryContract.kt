@@ -18,7 +18,6 @@ package br.com.enjoei.app.domain.repository
 import br.com.enjoei.app.domain.model.ProductList
 import io.reactivex.Observable
 
-
 interface HomeRepositoryContract {
     fun fetchProductList(): Observable<ProductList>
     fun getProductListByPage(page: Int): Observable<ProductList>

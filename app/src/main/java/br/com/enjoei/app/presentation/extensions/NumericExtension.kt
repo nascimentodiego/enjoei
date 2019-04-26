@@ -17,7 +17,7 @@ package br.com.enjoei.app.presentation.extensions
 
 import java.text.DecimalFormat
 import java.text.NumberFormat.getCurrencyInstance
-import java.util.*
+import java.util.Locale
 
 val ptBRLocale = Locale("pt", "BR")
 

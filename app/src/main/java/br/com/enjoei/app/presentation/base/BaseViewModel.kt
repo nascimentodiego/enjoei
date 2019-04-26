@@ -15,7 +15,6 @@
  */
 package br.com.enjoei.app.presentation.base
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.enjoei.app.presentation.util.SingleEvent
@@ -29,13 +28,8 @@ abstract class BaseViewModel<I : BaseIntention, E : BaseSideEffect, S : BaseStat
     private val baseDisposables = CompositeDisposable()
     protected val baseIntentions = PublishSubject.create<I>()
 
-    protected val _state = MutableLiveData<S>()
-    val states: LiveData<S>
-        get() = _state
-
-    protected val _sideEffect = MutableLiveData<SingleEvent<E>>()
-    val sideEffect: LiveData<SingleEvent<E>>
-        get() = _sideEffect
+    val state = MutableLiveData<S>()
+    val sideEffect = MutableLiveData<SingleEvent<E>>()
 
     fun addDisposable(disposables: Disposable) {
         baseDisposables.add(disposables)

@@ -19,7 +19,6 @@ import br.com.enjoei.app.data.ProductDataSource
 import br.com.enjoei.app.domain.model.ProductList
 import io.reactivex.Observable
 
-
 class HomeRepository(
     private val remoteDataSource: ProductDataSource
 ) : HomeRepositoryContract {
@@ -28,5 +27,4 @@ class HomeRepository(
 
     override fun fetchProductList(): Observable<ProductList> =
         remoteDataSource.fetchProductList()
-
 }

@@ -109,5 +109,4 @@ class HomeReducerImpl(private val context: Context) : HomeReducer {
 
         return "$discount $installment"
     }
-
 }

@@ -15,7 +15,6 @@
  */
 package br.com.enjoei.app.util
 
-
 object TestUtil {
     fun loadTextFile(name: String): String = this::class.java.classLoader.getResource(name).readText()
 }

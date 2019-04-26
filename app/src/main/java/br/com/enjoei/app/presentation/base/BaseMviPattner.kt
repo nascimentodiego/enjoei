@@ -15,7 +15,6 @@
  */
 package br.com.enjoei.app.presentation.base
 
-
 interface BaseIntention
 
 interface BaseState

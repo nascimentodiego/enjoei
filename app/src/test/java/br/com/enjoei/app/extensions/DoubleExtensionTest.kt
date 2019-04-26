@@ -19,7 +19,6 @@ import br.com.enjoei.app.presentation.extensions.asBRL
 import org.junit.Assert
 import org.junit.Test
 
-
 class DoubleExtensionTest {
 
     @Test

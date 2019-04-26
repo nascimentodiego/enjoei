@@ -25,7 +25,6 @@ import org.junit.Assert
 import org.junit.Test
 import org.koin.test.inject
 
-
 class HomeViewModelTest : BaseViewModelTest() {
 
     private val viewModel: HomeViewModel by inject()
@@ -33,7 +32,7 @@ class HomeViewModelTest : BaseViewModelTest() {
 
     @Test
     fun whenUserInitApp_mustBeShownListOfProducts() {
-        //Given
+        // Given
         val responseJson = TestUtil.loadTextFile("home/fixture_product_list.json")
         val products = getMockedProductList(responseJson)
 
@@ -59,7 +58,7 @@ class HomeViewModelTest : BaseViewModelTest() {
             )
         )
 
-        //When
+        // When
         viewModel.states.observeForever {
             it?.let { state ->
                 actual.add(state)
@@ -68,12 +67,11 @@ class HomeViewModelTest : BaseViewModelTest() {
 
         viewModel.execute(HomeViewModel.HomeIntention.LoadScreen)
 
-        //Then
+        // Then
         Assert.assertEquals(expected, actual)
     }
 
     private fun getMockedProductList(json: String): ProductList {
         return moshi.adapter(ProductList::class.java).fromJson(json)!!
     }
-
 }

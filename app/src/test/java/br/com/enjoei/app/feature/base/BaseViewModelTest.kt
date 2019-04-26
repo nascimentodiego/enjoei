@@ -18,7 +18,11 @@ package br.com.enjoei.app.feature.base
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import br.com.enjoei.app.BuildConfig
 import br.com.enjoei.app.di.androidMockModule
-import br.com.enjoei.app.presentation.di.*
+import br.com.enjoei.app.presentation.di.interactorModule
+import br.com.enjoei.app.presentation.di.repositoryModule
+import br.com.enjoei.app.presentation.di.viewModelModule
+import br.com.enjoei.app.presentation.di.networkModule
+import br.com.enjoei.app.presentation.di.PROPERTY_BASE_URL
 import br.com.enjoei.app.util.RxImmediateSchedulerRule
 import com.squareup.moshi.Moshi
 import okhttp3.mockwebserver.MockWebServer
@@ -28,7 +32,6 @@ import org.junit.Rule
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
-
 
 abstract class BaseViewModelTest : KoinTest {
 
