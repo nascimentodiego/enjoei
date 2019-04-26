@@ -20,6 +20,7 @@ import android.view.WindowManager
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 
+
 fun Fragment.setupToolbar(title: String, toolbar: Toolbar, block: (Toolbar) -> Unit = {}) {
     (activity as androidx.appcompat.app.AppCompatActivity).setSupportActionBar(toolbar)
     (activity as androidx.appcompat.app.AppCompatActivity).title = title
@@ -28,6 +29,7 @@ fun Fragment.setupToolbar(title: String, toolbar: Toolbar, block: (Toolbar) -> U
 
 fun Fragment.setupStatusBarColor(color: Int) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
         activity?.window?.let { window ->
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -35,3 +37,14 @@ fun Fragment.setupStatusBarColor(color: Int) {
         }
     }
 }
+
+
+fun Fragment.hideStatusBar(){
+        activity?.window?.let { window ->
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+}
+

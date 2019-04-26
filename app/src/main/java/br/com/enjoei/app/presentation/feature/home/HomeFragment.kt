@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.enjoei.app.MainNavDirections
 import br.com.enjoei.app.R
+import br.com.enjoei.app.presentation.extensions.hideStatusBar
 import br.com.enjoei.app.presentation.extensions.makeGone
 import br.com.enjoei.app.presentation.extensions.makeVisible
 import br.com.enjoei.app.presentation.extensions.observeNonNull
@@ -58,6 +59,7 @@ class HomeFragment : Fragment() {
         initViewModel()
         bindIntention()
         setupRecycleView()
+        hideStatusBar()
     }
 
 

@@ -4,7 +4,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:id="@+id/coordinatorLayout">
+        android:layout_height="match_parent"
+        android:id="@+id/coordinatorLayout">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -18,7 +19,7 @@
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 app:collapsedTitleTextAppearance="@style/Text.Regular.16sp"
-                app:contentScrim="?attr/colorPrimary"
+                app:contentScrim="@color/transparent"
                 app:expandedTitleMarginBottom="@dimen/collapsing_toolbar_margin_bottom"
                 app:expandedTitleTextAppearance="@style/Text.Regular.16sp"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
