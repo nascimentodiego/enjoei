@@ -21,7 +21,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:clipToPadding="false"
                 tools:listitem="@layout/item_product"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:itemCount="10"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

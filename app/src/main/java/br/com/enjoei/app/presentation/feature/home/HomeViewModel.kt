@@ -19,6 +19,7 @@ import br.com.enjoei.app.domain.interactor.HomeUseCaseContract
 import br.com.enjoei.app.domain.model.ProductList
 import br.com.enjoei.app.presentation.base.*
 import br.com.enjoei.app.presentation.feature.home.HomeViewModel.*
+import br.com.enjoei.app.presentation.model.ProductItemView
 import br.com.enjoei.app.presentation.util.SingleEvent
 import io.reactivex.Observable
 
@@ -110,15 +111,15 @@ class HomeViewModel(
     sealed class HomeIntention : BaseIntention {
         object LoadScreen : HomeIntention()
         object LoadMore : HomeIntention()
-        data class LoadProductDetail(val productView: HomeReducer.ProductItemView) : HomeIntention()
+        data class LoadProductDetail(val productView: ProductItemView) : HomeIntention()
     }
 
     sealed class HomeSideEffect : BaseSideEffect {
-        data class NavigateToDetail(val productView: HomeReducer.ProductItemView) : HomeSideEffect()
+        data class NavigateToDetail(val productView: ProductItemView) : HomeSideEffect()
     }
 
     data class HomeScreenState(
-        val productList: List<HomeReducer.ProductItemView> = emptyList(),
+        val productList: List<ProductItemView> = emptyList(),
         val isLoading: Boolean = true,
         val isLoadingMore: Boolean = true,
         val isLoadError: Boolean = false,

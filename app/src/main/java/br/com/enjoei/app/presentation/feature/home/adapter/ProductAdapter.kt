@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.enjoei.app.R
 import br.com.enjoei.app.presentation.extensions.*
 import br.com.enjoei.app.presentation.feature.home.HomeReducer
+import br.com.enjoei.app.presentation.model.ProductItemView
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import kotlin.properties.Delegates
@@ -36,11 +37,11 @@ class ProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         const val TYPE_ITEM = 1
     }
 
-    var items: List<HomeReducer.ProductItemView> by Delegates.observable(emptyList()) { _, old, new ->
+    var items: List<ProductItemView> by Delegates.observable(emptyList()) { _, old, new ->
         if (old != new) notifyDataSetChanged()
     }
 
-    private val clickItem = PublishSubject.create<HomeReducer.ProductItemView>()
+    private val clickItem = PublishSubject.create<ProductItemView>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -69,7 +70,7 @@ class ProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun clickItem(): Observable<HomeReducer.ProductItemView> = clickItem.hide()
+    fun clickItem(): Observable<ProductItemView> = clickItem.hide()
 
     override fun getItemViewType(position: Int): Int =
         if (isFirstPosition(position))
@@ -86,12 +87,14 @@ class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val textViewDiscount: TextView = itemView.findViewById(R.id.textViewDiscount)
     private val textViewTitle: TextView = itemView.findViewById(R.id.textViewTitle)
     private val textViewPrice: TextView = itemView.findViewById(R.id.textViewPrice)
+    private val textViewSize: TextView = itemView.findViewById(R.id.textViewSize)
     private val texViewLikes: TextView = itemView.findViewById(R.id.texViewLikes)
 
 
-    fun bind(item: HomeReducer.ProductItemView) {
+    fun bind(item: ProductItemView) {
         textViewTitle.text = item.title
         textViewPrice.text = item.price
+        textViewSize.text = item.size
         texViewLikes.text = item.likes
         if (item.discount.isNotEmpty())
             textViewDiscount.apply {

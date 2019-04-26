@@ -10,11 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.enjoei.app.MainNavDirections
 import br.com.enjoei.app.R
+import br.com.enjoei.app.presentation.extensions.hideStatusBar
 import br.com.enjoei.app.presentation.extensions.makeGone
 import br.com.enjoei.app.presentation.extensions.makeVisible
 import br.com.enjoei.app.presentation.extensions.observeNonNull
 import br.com.enjoei.app.presentation.feature.home.adapter.ProductAdapter
+import br.com.enjoei.app.presentation.model.ProductItemView
 import br.com.enjoei.app.presentation.widget.SpacingItemDecoration
 import com.jakewharton.rxbinding2.support.v7.widget.RxRecyclerView
 import com.jakewharton.rxbinding2.view.RxView
@@ -56,6 +59,7 @@ class HomeFragment : Fragment() {
         initViewModel()
         bindIntention()
         setupRecycleView()
+        hideStatusBar()
     }
 
 
@@ -165,8 +169,9 @@ class HomeFragment : Fragment() {
         swipeRefresh.isRefreshing = false
     }
 
-    private fun navigateToDetailScreen(product: HomeReducer.ProductItemView) {
-        findNavController().navigate(R.id.action_mainFragment_to_productDetail)
+    private fun navigateToDetailScreen(product: ProductItemView) {
+        val direction =  MainNavDirections.actionMainFragmentToProductDetail(product)
+        findNavController().navigate(direction)
     }
 
 }
