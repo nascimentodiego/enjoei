@@ -13,12 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.enjoei.app.presentation.di
+package br.com.enjoei.app.util
 
-import br.com.enjoei.app.presentation.feature.home.HomeViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
 
-val viewModelModule = module {
-    viewModel { HomeViewModel(get(), get()) }
+object TestUtil {
+    fun loadTextFile(name: String): String = this::class.java.classLoader.getResource(name).readText()
 }

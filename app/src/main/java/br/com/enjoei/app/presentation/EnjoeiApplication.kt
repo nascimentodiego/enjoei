@@ -49,6 +49,7 @@ class EnjoeiApplication : Application() {
 
             modules(
                 listOf(
+                    androidModule,
                     interactorModule,
                     repositoryModule,
                     viewModelModule,

@@ -15,10 +15,11 @@
  */
 package br.com.enjoei.app.presentation.di
 
-import br.com.enjoei.app.presentation.feature.home.HomeViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
+import br.com.enjoei.app.presentation.feature.home.HomeReducer
+import br.com.enjoei.app.presentation.feature.home.HomeReducerImpl
 import org.koin.dsl.module
 
-val viewModelModule = module {
-    viewModel { HomeViewModel(get(), get()) }
+
+val androidModule = module {
+    single { HomeReducerImpl(get()) as HomeReducer }
 }
