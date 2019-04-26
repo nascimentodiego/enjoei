@@ -4,6 +4,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="screen_product_title">Detalhe de produtos</string>
+    <string name="screen_product_size_label">tam</string>
+    <string name="screen_product_discount_label">% off</string>
+    <string name="screen_product_installment_label">em até %sx</string>
     <string name="screen_message_title">Mensagens</string>
     <string name="screen_search_title">Busca de produtos</string>
     <string name="screen_perfil_title">Perfil</string>
@@ -17,4 +20,5 @@
     <string name="error_title">turbulências na rede</string>
     <string name="error_msg">nosso cyber voo tá chacoalhando.\n dê uma checada na sua internet \npra continuar com a gente :P</string>
     <string name="error_button_title">tentar de novo</string>
+
 </resources>

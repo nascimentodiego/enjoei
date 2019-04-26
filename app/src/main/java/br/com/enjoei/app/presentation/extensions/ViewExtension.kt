@@ -20,6 +20,7 @@ import android.view.View
 import android.widget.ImageView
 import br.com.enjoei.app.BuildConfig
 import br.com.enjoei.app.presentation.feature.home.HomeReducer
+import br.com.enjoei.app.presentation.model.PhotoView
 import com.bumptech.glide.Glide
 import com.cloudinary.android.MediaManager
 
@@ -47,7 +48,7 @@ fun ImageView.loadImageFromAsset(picture: String) {
         .into(this)
 }
 
-fun ImageView.loadUserPhoto(photo: HomeReducer.PhotoView) {
+fun ImageView.loadUserPhoto(photo: PhotoView) {
     val url = BuildConfig.API_BASE_CLOUDINARY + MediaManager
         .get()
         .url()
@@ -66,7 +67,7 @@ fun ImageView.loadUserPhoto(photo: HomeReducer.PhotoView) {
         .into(this)
 }
 
-fun ImageView.loadProductPhoto(photo: HomeReducer.PhotoView) {
+fun ImageView.loadProductPhoto(photo: PhotoView) {
     val url = BuildConfig.API_BASE_CLOUDINARY + MediaManager
         .get()
         .url()

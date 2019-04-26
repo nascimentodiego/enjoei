@@ -10,4 +10,7 @@
     <color name="white">#ffffff</color>
 
     <color name="color_line">#f4f2f0</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="color_stroke_vector_asset_line">#cac5bf</color>
+
 </resources>

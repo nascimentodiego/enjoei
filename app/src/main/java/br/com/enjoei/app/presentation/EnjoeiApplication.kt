@@ -21,6 +21,7 @@ import br.com.enjoei.app.presentation.di.*
 import com.cloudinary.android.MediaManager
 import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import java.io.IOException
 import java.net.SocketException
@@ -43,6 +44,9 @@ class EnjoeiApplication : Application() {
 
     private fun setupKoin() {
         startKoin {
+            //inject Android context
+            androidContext(this@EnjoeiApplication)
+
             modules(
                 listOf(
                     interactorModule,

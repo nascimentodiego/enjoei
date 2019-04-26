@@ -15,15 +15,22 @@
  */
 package br.com.enjoei.app.presentation.feature.home
 
-import android.text.SpannableString
+import android.content.Context
+import br.com.enjoei.app.R
 import br.com.enjoei.app.domain.model.Product
 import br.com.enjoei.app.presentation.base.Reducer
 import br.com.enjoei.app.presentation.extensions.asBRL
-import br.com.enjoei.app.presentation.extensions.strikethroughSpan
 import br.com.enjoei.app.presentation.feature.home.HomeViewModel.HomeScreenChange
 import br.com.enjoei.app.presentation.feature.home.HomeViewModel.HomeScreenState
+import br.com.enjoei.app.presentation.model.PhotoView
+import br.com.enjoei.app.presentation.model.ProductItemView
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class HomeReducer : Reducer<HomeScreenState?, HomeScreenChange> {
+class HomeReducer : Reducer<HomeScreenState?, HomeScreenChange>, KoinComponent {
+
+    private val context: Context  by inject()
+
     override fun reducer(
         state: HomeScreenState?,
         change: HomeScreenChange
@@ -62,44 +69,53 @@ class HomeReducer : Reducer<HomeScreenState?, HomeScreenChange> {
             }
         } ?: HomeScreenState()
 
-    private fun productMapper(productRsponse: Product): ProductItemView {
+    private fun productMapper(product: Product): ProductItemView {
 
-        val spannablePrice = SpannableString(productRsponse.originalPrice.asBRL(true))
-        spannablePrice.strikethroughSpan()
-
-        val user = productRsponse.user.avatar
-        val discount = if (productRsponse.discount == 0.0) "" else "-${productRsponse.discount.toInt()}%"
+        val user = product.user.avatar
+        val discount = if (product.discount == 0.0) "" else "-${product.discount.toInt()}%"
 
         return ProductItemView(
-            productId = productRsponse.id,
-            title = productRsponse.title,
-            size = productRsponse.size ?: "",
-            likes = productRsponse.likes.toString(),
-            price = productRsponse.price.asBRL(true),
-            oldPrice = spannablePrice,
+            productId = product.id,
+            title = product.title,
+            content = product.content,
+            size = buildSizeText(product.size),
+            likes = product.likes.toString(),
+            commentCount = product.commentsCount.toString(),
+            installmentAndDiscount = buildInstallmentAndDiscountText(
+                product.maxInstallment.toString(),
+                product.discount
+            ),
+            price = product.price.asBRL(true),
+            oldPrice = if (product.originalPrice == product.price) "" else product.originalPrice.asBRL(true),
             discount = discount,
             avatar = PhotoView(user.id, user.crop, user.gravity),
-            photos = productRsponse.photos.map { photo -> PhotoView(photo.id, photo.crop, photo.gravity) }
+            photos = product.photos.map { photo -> PhotoView(photo.id, photo.crop, photo.gravity) }
         )
     }
 
-    data class ProductItemView(
-        val productId: Int = 0,
-        val title: String,
-        val content: String = "",
-        val size: String = "",
-        val likes: String = "0",
-        val oldPrice: SpannableString = SpannableString(""),
-        val price: String = "",
-        val discount: String = "",
-        val photos: List<PhotoView> = emptyList(),
-        val avatar: PhotoView = PhotoView()
-    )
+    private fun buildSizeText(size: String?): String {
+        return if (size == null) {
+            ""
+        } else {
+            if (size.isEmpty())
+                ""
+            else {
+                " - ${context.getString(R.string.screen_product_size_label) + " $size"}"
+            }
+        }
+    }
 
-    data class PhotoView(
-        val id: String = "",
-        val crop: String = "",
-        val gravity: String = ""
-    )
+    private fun buildInstallmentAndDiscountText(maxInstallment: String, discount: Double): String {
+        val discount =
+            if (discount == 0.0) "" else "${discount.toInt()} ${context.getString(R.string.screen_product_discount_label)} "
+
+        val installment = if (maxInstallment == "0") "" else context.getString(
+            R.string.screen_product_installment_label,
+            maxInstallment
+        )
+
+        return "$discount $installment"
+    }
+
 
 }

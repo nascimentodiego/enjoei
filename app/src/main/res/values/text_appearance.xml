@@ -29,6 +29,10 @@
         <item name="android:textSize">@dimen/textSize18</item>
     </style>
 
+    <style name="Text.SemiBold.22sp">
+        <item name="android:textSize">@dimen/textSize22</item>
+    </style>
+
     <style name="Text.Regular.12sp">
         <item name="android:textSize">@dimen/textSize12</item>
     </style>
@@ -37,9 +41,20 @@
         <item name="android:textSize">@dimen/textSize14</item>
     </style>
 
+    <style name="Text.Regular.16sp">
+        <item name="android:textSize">@dimen/textSize16</item>
+    </style>
+
+    <style name="Text.Light.14p">
+        <item name="android:textSize">@dimen/textSize14</item>
+    </style>
 
     <style name="Text.Light.16sp">
         <item name="android:textSize">@dimen/textSize16</item>
+    </style>
+
+    <style name="Text.Light.22sp">
+        <item name="android:textSize">@dimen/textSize22</item>
     </style>
 
     <style name="Text.Bold.16sp">

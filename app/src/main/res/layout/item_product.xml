@@ -57,10 +57,22 @@
             android:layout_height="wrap_content"
             android:textColor="@color/pink"
             app:layout_constraintStart_toStartOf="@id/textViewTitle"
-            app:layout_constraintEnd_toEndOf="@id/textViewTitle"
+            app:layout_constraintEnd_toStartOf="@id/textViewSize"
             app:layout_constraintTop_toBottomOf="@id/textViewTitle"
             android:layout_marginTop="@dimen/space"
             tools:text="R$ 42"
+            app:layout_constraintHorizontal_chainStyle="packed"/>
+
+    <TextView
+            android:id="@+id/textViewSize"
+            android:textAppearance="@style/Text.Light.14p"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/textViewPrice"
+            app:layout_constraintEnd_toEndOf="@id/textViewTitle"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+            android:layout_marginTop="@dimen/space"
+            tools:text=" - tam p"
     />
 
     <View

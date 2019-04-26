@@ -4,7 +4,6 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/main_nav"
             app:startDestination="@id/mainFragment">
-
     <fragment
             android:id="@+id/mainFragment"
             android:label="Listagem de produtos"
@@ -14,7 +13,13 @@
     <fragment android:id="@+id/productDetail"
               android:name="br.com.enjoei.app.presentation.feature.product.ProductDetailFragment"
               tools:layout="@layout/fragment_product_detail"
-              android:label="Detalhe do produto"/>
+              android:label="Detalhe do produto">
+
+        <argument
+                android:name="product"
+                app:argType="br.com.enjoei.app.presentation.model.ProductItemView"/>
+
+    </fragment>
     <fragment android:id="@+id/search"
               android:label="Busca de Produtos"
               android:name="br.com.enjoei.app.presentation.feature.search.SearchFragment"
@@ -48,7 +53,11 @@
     <action android:id="@+id/action_mainFragment_to_productDetail"
             app:destination="@id/productDetail"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"/>
+            app:exitAnim="@anim/nav_default_exit_anim">
+        <argument
+                android:name="product"
+                app:argType="br.com.enjoei.app.presentation.model.ProductItemView"/>
+    </action>
     <action android:id="@+id/action_mainFragment_to_messageFragment"
             app:destination="@id/messageFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
