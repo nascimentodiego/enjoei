@@ -1,6 +1,5 @@
 package br.com.enjoei.app.presentation.feature.product
 
-
 import android.os.Bundle
 import android.text.SpannableString
 import android.view.LayoutInflater
@@ -17,7 +16,6 @@ import kotlinx.android.synthetic.main.fragment_product_detail.*
 import kotlinx.android.synthetic.main.item_product.textViewPrice
 import kotlinx.android.synthetic.main.item_product.textViewTitle
 
-
 class ProductDetailFragment : Fragment() {
 
     val product by lazy {
@@ -25,7 +23,8 @@ class ProductDetailFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_product_detail, container, false)
@@ -55,6 +54,4 @@ class ProductDetailFragment : Fragment() {
         tabLayout.setupWithViewPager(viewPagerPhotos, true)
 //        dotsIndicator.setViewPager(viewPagerPhotos)
     }
-
-
 }

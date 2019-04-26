@@ -22,13 +22,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.enjoei.app.R
-import br.com.enjoei.app.presentation.extensions.*
-import br.com.enjoei.app.presentation.feature.home.HomeReducer
+import br.com.enjoei.app.presentation.extensions.makeVisible
+import br.com.enjoei.app.presentation.extensions.makeGone
+import br.com.enjoei.app.presentation.extensions.loadProductPhoto
+import br.com.enjoei.app.presentation.extensions.loadUserPhoto
+import br.com.enjoei.app.presentation.extensions.loadImageFromAsset
 import br.com.enjoei.app.presentation.model.ProductItemView
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import kotlin.properties.Delegates
-
 
 class ProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -43,7 +45,6 @@ class ProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val clickItem = PublishSubject.create<ProductItemView>()
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return if (viewType == TYPE_HEADER) {
@@ -53,7 +54,6 @@ class ProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val view = inflater.inflate(R.layout.item_product, parent, false)
             ProductViewHolder(view)
         }
-
     }
 
     override fun getItemCount(): Int = items.size + 1
@@ -77,7 +77,6 @@ class ProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             TYPE_HEADER
         else TYPE_ITEM
 
-
     fun isFirstPosition(position: Int) = position == 0
 }
 
@@ -89,7 +88,6 @@ class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val textViewPrice: TextView = itemView.findViewById(R.id.textViewPrice)
     private val textViewSize: TextView = itemView.findViewById(R.id.textViewSize)
     private val texViewLikes: TextView = itemView.findViewById(R.id.texViewLikes)
-
 
     fun bind(item: ProductItemView) {
         textViewTitle.text = item.title

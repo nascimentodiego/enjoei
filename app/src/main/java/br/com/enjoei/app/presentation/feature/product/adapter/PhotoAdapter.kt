@@ -25,7 +25,6 @@ import br.com.enjoei.app.R
 import br.com.enjoei.app.presentation.extensions.loadProductPhoto
 import br.com.enjoei.app.presentation.model.PhotoView
 
-
 class PhotoAdapter(private val photos: List<PhotoView>, private val context: Context) : PagerAdapter() {
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {

@@ -21,7 +21,6 @@ import androidx.annotation.Px
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-
 class SpacingItemDecoration @JvmOverloads constructor(
     @Px
     private val spacing: Int,
@@ -78,9 +77,9 @@ class SpacingItemDecoration @JvmOverloads constructor(
 
                 with(outRect) {
                     left = spacing
-                    right = spacing //if (position % cols == cols - 1) spacing else 0
-                    top = spacing //spacingTop
-                    bottom = spacing //spacingBottom
+                    right = spacing // if (position % cols == cols - 1) spacing else 0
+                    top = spacing // spacingTop
+                    bottom = spacing // spacingBottom
                 }
             }
         }

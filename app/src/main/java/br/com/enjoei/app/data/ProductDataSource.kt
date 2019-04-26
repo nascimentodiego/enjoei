@@ -21,5 +21,4 @@ import io.reactivex.Observable
 interface ProductDataSource {
     fun fetchProductList(): Observable<ProductList>
     fun getProductListByPage(page: Int): Observable<ProductList>
-
 }

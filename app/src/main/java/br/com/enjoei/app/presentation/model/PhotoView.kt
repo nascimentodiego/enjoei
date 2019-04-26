@@ -18,7 +18,6 @@ package br.com.enjoei.app.presentation.model
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-
 @Parcelize
 data class PhotoView(
     val id: String = "",

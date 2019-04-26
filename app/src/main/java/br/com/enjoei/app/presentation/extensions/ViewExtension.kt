@@ -19,7 +19,6 @@ import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import br.com.enjoei.app.BuildConfig
-import br.com.enjoei.app.presentation.feature.home.HomeReducer
 import br.com.enjoei.app.presentation.model.PhotoView
 import com.bumptech.glide.Glide
 import com.cloudinary.android.MediaManager
@@ -60,8 +59,6 @@ fun ImageView.loadUserPhoto(photo: PhotoView) {
         .radius("max")
         .generate() + "/" + photo.id + ".png"
 
-
-
     Glide.with(this)
         .load(url)
         .into(this)
@@ -79,11 +76,7 @@ fun ImageView.loadProductPhoto(photo: PhotoView) {
         .radius(5)
         .generate() + "/" + photo.id + ".png"
 
-
-
     Glide.with(this)
         .load(url)
         .into(this)
 }
-
-

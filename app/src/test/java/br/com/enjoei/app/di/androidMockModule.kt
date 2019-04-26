@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.enjoei.app.domain.repository
+package br.com.enjoei.app.di
 
-import br.com.enjoei.app.domain.model.ProductList
-import io.reactivex.Observable
+import br.com.enjoei.app.feature.home.HomeReducerMock
+import br.com.enjoei.app.presentation.feature.home.HomeReducer
+import org.koin.dsl.module
 
-interface HomeRepositoryContract {
-    fun fetchProductList(): Observable<ProductList>
-    fun getProductListByPage(page: Int): Observable<ProductList>
+val androidMockModule = module {
+    single { HomeReducerMock() as HomeReducer }
 }

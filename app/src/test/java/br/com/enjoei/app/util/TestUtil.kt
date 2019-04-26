@@ -13,12 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.enjoei.app.domain.repository
+package br.com.enjoei.app.util
 
-import br.com.enjoei.app.domain.model.ProductList
-import io.reactivex.Observable
-
-interface HomeRepositoryContract {
-    fun fetchProductList(): Observable<ProductList>
-    fun getProductListByPage(page: Int): Observable<ProductList>
+object TestUtil {
+    fun loadTextFile(name: String): String = this::class.java.classLoader.getResource(name).readText()
 }

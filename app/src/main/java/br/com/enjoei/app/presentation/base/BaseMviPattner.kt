@@ -15,7 +15,6 @@
  */
 package br.com.enjoei.app.presentation.base
 
-
 interface BaseIntention
 
 interface BaseState
@@ -23,7 +22,3 @@ interface BaseState
 interface BaseSideEffect
 
 interface BaseChange
-
-interface Reducer<S : BaseState?, C : BaseChange> {
-    fun reducer(state: S?, change: C): S
-}

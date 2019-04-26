@@ -18,11 +18,9 @@ package br.com.enjoei.app.domain.interactor
 import br.com.enjoei.app.domain.model.ProductList
 import io.reactivex.Observable
 
-
 interface HomeUseCaseContract {
 
     fun initLoad(): Observable<ProductList>
 
     fun getProductListByPage(): Observable<ProductList>
-
 }

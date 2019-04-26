@@ -17,7 +17,6 @@ package br.com.enjoei.app.domain.model
 
 import com.squareup.moshi.Json
 
-
 data class Pagination(
     @field: Json(name = "current_page") val current: Int = 1,
     @field: Json(name = "total_pages") val total: Int = 1

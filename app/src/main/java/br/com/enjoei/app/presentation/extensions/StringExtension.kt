@@ -13,12 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.enjoei.app.domain.repository
+package br.com.enjoei.app.presentation.extensions
 
-import br.com.enjoei.app.domain.model.ProductList
-import io.reactivex.Observable
+import android.content.Context
+import br.com.enjoei.app.R
 
-interface HomeRepositoryContract {
-    fun fetchProductList(): Observable<ProductList>
-    fun getProductListByPage(page: Int): Observable<ProductList>
+fun String.buildSizeText(context: Context): String {
+    return if (this.isEmpty())
+        ""
+    else {
+        " - ${context.getString(R.string.screen_product_size_label) + " $this"}"
+    }
 }

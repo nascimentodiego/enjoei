@@ -1,6 +1,5 @@
 package br.com.enjoei.app.presentation.feature.home
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +26,6 @@ import kotlinx.android.synthetic.main.content_loading.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 private const val VISIBLE_THRESHOLD = 1
 
 class HomeFragment : Fragment() {
@@ -37,7 +35,8 @@ class HomeFragment : Fragment() {
     private var isLoadingMore: Boolean = false
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_home, container, false)
 
@@ -61,7 +60,6 @@ class HomeFragment : Fragment() {
         setupRecycleView()
         hideStatusBar()
     }
-
 
     private fun setupRecycleView() {
         val spacingItemDecoration =
@@ -131,7 +129,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        viewModel.states.observeNonNull(this) { state ->
+        viewModel.state.observeNonNull(this) { state ->
 
             isLoadingMore = state.isLoading || state.isLoadingMore
             with(state) {
@@ -161,7 +159,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     private fun showError() {
         loadingGroup.makeGone()
         recyclerView.makeGone()
@@ -170,8 +167,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToDetailScreen(product: ProductItemView) {
-        val direction =  MainNavDirections.actionMainFragmentToProductDetail(product)
+        val direction = MainNavDirections.actionMainFragmentToProductDetail(product)
         findNavController().navigate(direction)
     }
-
 }

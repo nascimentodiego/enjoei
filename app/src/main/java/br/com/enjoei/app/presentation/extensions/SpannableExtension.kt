@@ -19,7 +19,6 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
 
-
 fun SpannableString.strikethroughSpan() {
     this.setSpan(StrikethroughSpan(), 0, this.length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
 }

@@ -20,7 +20,6 @@ import br.com.enjoei.app.domain.repository.HomeRepositoryContract
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-
 class HomeUseCase(private val repository: HomeRepositoryContract) : HomeUseCaseContract {
 
     private var currentPage = 1
@@ -47,5 +46,4 @@ class HomeUseCase(private val repository: HomeRepositoryContract) : HomeUseCaseC
             }
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
-
 }

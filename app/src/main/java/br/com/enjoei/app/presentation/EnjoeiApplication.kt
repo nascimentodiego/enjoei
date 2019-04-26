@@ -17,7 +17,12 @@ package br.com.enjoei.app.presentation
 
 import android.app.Application
 import br.com.enjoei.app.BuildConfig
-import br.com.enjoei.app.presentation.di.*
+import br.com.enjoei.app.presentation.di.androidModule
+import br.com.enjoei.app.presentation.di.interactorModule
+import br.com.enjoei.app.presentation.di.repositoryModule
+import br.com.enjoei.app.presentation.di.viewModelModule
+import br.com.enjoei.app.presentation.di.networkModule
+import br.com.enjoei.app.presentation.di.PROPERTY_BASE_URL
 import com.cloudinary.android.MediaManager
 import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins
@@ -25,7 +30,6 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import java.io.IOException
 import java.net.SocketException
-
 
 class EnjoeiApplication : Application() {
 
@@ -44,11 +48,12 @@ class EnjoeiApplication : Application() {
 
     private fun setupKoin() {
         startKoin {
-            //inject Android context
+            // inject Android context
             androidContext(this@EnjoeiApplication)
 
             modules(
                 listOf(
+                    androidModule,
                     interactorModule,
                     repositoryModule,
                     viewModelModule,
