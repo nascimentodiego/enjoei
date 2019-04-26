@@ -19,7 +19,7 @@ import br.com.enjoei.app.domain.model.ProductList
 import br.com.enjoei.app.feature.base.BaseViewModelTest
 import br.com.enjoei.app.presentation.feature.home.HomeReducer
 import br.com.enjoei.app.presentation.feature.home.HomeViewModel
-import br.com.enjoei.app.util.TestUtil
+import br.com.enjoei.app.rules.TestUtil
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Assert
 import org.junit.Test

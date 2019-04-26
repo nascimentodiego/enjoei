@@ -23,7 +23,7 @@ import br.com.enjoei.app.presentation.di.repositoryModule
 import br.com.enjoei.app.presentation.di.viewModelModule
 import br.com.enjoei.app.presentation.di.networkModule
 import br.com.enjoei.app.presentation.di.PROPERTY_BASE_URL
-import br.com.enjoei.app.util.RxImmediateSchedulerRule
+import br.com.enjoei.app.rules.RxImmediateSchedulerRule
 import com.squareup.moshi.Moshi
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After

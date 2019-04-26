@@ -19,6 +19,8 @@ import android.os.Build
 import android.view.WindowManager
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
 fun Fragment.setupToolbar(title: String, toolbar: Toolbar, block: (Toolbar) -> Unit = {}) {
     (activity as androidx.appcompat.app.AppCompatActivity).setSupportActionBar(toolbar)
@@ -37,11 +39,18 @@ fun Fragment.setupStatusBarColor(color: Int) {
     }
 }
 
+inline fun FragmentManager.runTransaction(block: FragmentTransaction.() -> Unit) {
+    with(beginTransaction()) {
+        block()
+        commit()
+    }
+}
+
 fun Fragment.hideStatusBar() {
-        activity?.window?.let { window ->
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
+    activity?.window?.let { window ->
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+    }
 }

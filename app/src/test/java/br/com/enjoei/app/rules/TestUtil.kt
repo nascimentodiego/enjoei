@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.enjoei.app.util
+package br.com.enjoei.app.rules
 
 object TestUtil {
     fun loadTextFile(name: String): String = this::class.java.classLoader.getResource(name).readText()

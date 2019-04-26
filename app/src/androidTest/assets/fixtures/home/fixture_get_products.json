@@ -1,0 +1,140 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "discount_percentage": 0,
+      "photos": [
+        {
+          "public_id": "sunset_shoes",
+          "crop": "fill",
+          "gravity": "auto"
+        },
+        {
+          "public_id": "sample",
+          "crop": "fill",
+          "gravity": "auto"
+        }
+      ],
+      "title": "Tenis maneiro",
+      "price": 400,
+      "original_price": 400,
+      "size": "36",
+      "likes_count": 46,
+      "maximum_installment": 10,
+      "published_comments_count": 15,
+      "content": "tenis roxo, pouco usado, tamanho 36",
+      "user": {
+        "id": 1,
+        "name": "Maria Fernanda Le Roux",
+        "avatar": {
+          "public_id": "lady",
+          "crop": "thumb",
+          "gravity": "face"
+        }
+      }
+    },
+    {
+      "id": 1,
+      "discount_percentage": 10,
+      "photos": [
+        {
+          "public_id": "bike",
+          "crop": "fill",
+          "gravity": "auto"
+        },
+        {
+          "public_id": "sample",
+          "crop": "fill",
+          "gravity": "auto"
+        }
+      ],
+      "title": "Tenis maneiro",
+      "price": 900,
+      "original_price": 1000,
+      "size": null,
+      "likes_count": 2,
+      "maximum_installment": 12,
+      "published_comments_count": 5,
+      "content": "escolha a sua! estou disponibilizando a venda nossas bikes mais lindas que foram rejeitadas pelos lojistas por terem apenas mini arranhoeszinhos!! não perde a chance de ter uma blitz!!!!!",
+      "user": {
+        "id": 2,
+        "name": "Beatriz de souza",
+        "avatar": {
+          "public_id": "woman",
+          "crop": "thumb",
+          "gravity": "face"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "discount_percentage": 0,
+      "photos": [
+        {
+          "public_id": "butterfly",
+          "crop": "fill",
+          "gravity": "auto"
+        },
+        {
+          "public_id": "sample",
+          "crop": "fill",
+          "gravity": "auto"
+        }
+      ],
+      "title": "blusinha",
+      "price": 10.5,
+      "original_price": 10.5,
+      "size": "m",
+      "likes_count": 0,
+      "maximum_installment": 0,
+      "published_comments_count": 0,
+      "content": "blusinha rosa linda",
+      "user": {
+        "id": 1,
+        "name": "Maria Fernanda Le Roux",
+        "avatar": {
+          "public_id": "lady",
+          "crop": "thumb",
+          "gravity": "face"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "discount_percentage": 0,
+      "photos": [
+        {
+          "public_id": "basketball_in_net",
+          "crop": "fill",
+          "gravity": "auto"
+        },
+        {
+          "public_id": "sample",
+          "crop": "fill",
+          "gravity": "auto"
+        }
+      ],
+      "title": "bola",
+      "price": 35,
+      "original_price": 35,
+      "size": null,
+      "likes_count": 1,
+      "maximum_installment": 0,
+      "published_comments_count": 0,
+      "content": "bola legal",
+      "user": {
+        "id": 1,
+        "name": "Maria Fernanda Le Roux",
+        "avatar": {
+          "public_id": "lady",
+          "crop": "thumb",
+          "gravity": "face"
+        }
+      }
+    }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "total_pages": 2
+  }
+}

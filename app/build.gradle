@@ -20,7 +20,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "br.com.enjoei.app.EnjoeiTestRunner"
     }
     androidExtensions {
         experimental = true
@@ -83,6 +83,15 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$coreTesting"
     testImplementation "org.mockito:mockito-core:$mockito"
     testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp"
+
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okhttp"
     androidTestImplementation "androidx.test:runner:$runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_core"
+    androidTestImplementation "androidx.test:runner:$runner"
+    androidTestImplementation "androidx.test:rules:$androidxTest"
+    androidTestImplementation "androidx.test:monitor:1.1.0"
+    androidTestImplementation "br.com.concretesolutions:requestmatcher:$request_matcher"
+    androidTestImplementation "com.squareup.burst:burst-junit4:$burst"
+
 }
