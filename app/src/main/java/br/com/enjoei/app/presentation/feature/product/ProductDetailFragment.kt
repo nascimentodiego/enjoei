@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.enjoei.app.R
 import br.com.enjoei.app.presentation.extensions.hideStatusBar
-import br.com.enjoei.app.presentation.extensions.loadProductPhoto
 import br.com.enjoei.app.presentation.extensions.setupToolbar
 import br.com.enjoei.app.presentation.extensions.strikethroughSpan
 import br.com.enjoei.app.presentation.feature.product.ProductDetailFragmentArgs.Companion.fromBundle
+import br.com.enjoei.app.presentation.feature.product.adapter.PhotoAdapter
 import kotlinx.android.synthetic.main.fragment_product_detail.*
 import kotlinx.android.synthetic.main.item_product.textViewPrice
 import kotlinx.android.synthetic.main.item_product.textViewTitle
@@ -51,7 +51,9 @@ class ProductDetailFragment : Fragment() {
         textViewContent.text = product.content
         textViewCommentCount.text = product.commentCount
 
-        imageViewProductPhoto.loadProductPhoto(product.photos[0])
+        viewPagerPhotos.adapter = PhotoAdapter(product.photos, requireContext())
+        tabLayout.setupWithViewPager(viewPagerPhotos, true)
+//        dotsIndicator.setViewPager(viewPagerPhotos)
     }
 
 

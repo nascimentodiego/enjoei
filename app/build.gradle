@@ -53,12 +53,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.navigation:navigation-fragment$nav_version"
     implementation "androidx.navigation:navigation-ui$nav_version"
+    implementation "com.google.android.material:material:$material"
+
     implementation "com.github.ittianyu:BottomNavigationViewEx:$bottom_navigation_view_ex"
     implementation "com.cloudinary:cloudinary-android:$cloudinary"
     implementation "com.airbnb.android:lottie:$lottie_version"
-
-
-
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
