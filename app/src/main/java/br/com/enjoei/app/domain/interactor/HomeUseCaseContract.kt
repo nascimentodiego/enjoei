@@ -15,14 +15,14 @@
  */
 package br.com.enjoei.app.domain.interactor
 
-import br.com.enjoei.app.data.remote.model.ProductListResponse
+import br.com.enjoei.app.domain.model.ProductList
 import io.reactivex.Observable
 
 
 interface HomeUseCaseContract {
 
-    fun initLoad(): Observable<ProductListResponse>
+    fun initLoad(): Observable<ProductList>
 
-    fun getProductListByPage(): Observable<ProductListResponse>
+    fun getProductListByPage(): Observable<ProductList>
 
 }

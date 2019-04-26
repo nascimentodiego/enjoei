@@ -15,11 +15,11 @@
  */
 package br.com.enjoei.app.data
 
-import br.com.enjoei.app.data.remote.model.ProductListResponse
+import br.com.enjoei.app.domain.model.ProductList
 import io.reactivex.Observable
 
 interface ProductDataSource {
-    fun fetchProductList(): Observable<ProductListResponse>
-    fun getProductListByPage(page: Int): Observable<ProductListResponse>
+    fun fetchProductList(): Observable<ProductList>
+    fun getProductListByPage(page: Int): Observable<ProductList>
 
 }

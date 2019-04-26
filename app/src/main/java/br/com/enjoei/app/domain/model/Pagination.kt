@@ -13,21 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.enjoei.app.data.remote.model
+package br.com.enjoei.app.domain.model
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
-@JsonClass(generateAdapter = true)
-data class ProductResponse(
-    val id: Int = 0,
-    val content: String = "",
-    val title: String = "",
-    val size: String? = "",
-    val price: Double = 0.0,
-    @field: Json(name = "original_price") val originalPrice: Double = 0.0,
-    @field: Json(name = "discount_percentage") val discount: Double = 0.0,
-    @field: Json(name = "likes_count") val likes: Int = 0,
-    val photos: List<PhotoResponse> = emptyList(),
-    val user: UserResponse = UserResponse()
+
+data class Pagination(
+    @field: Json(name = "current_page") val current: Int = 1,
+    @field: Json(name = "total_pages") val total: Int = 1
 )

@@ -24,6 +24,8 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.enjoei.app.R
 import br.com.enjoei.app.presentation.extensions.*
 import br.com.enjoei.app.presentation.feature.home.HomeReducer
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 import kotlin.properties.Delegates
 
 
@@ -37,6 +39,9 @@ class ProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var items: List<HomeReducer.ProductItemView> by Delegates.observable(emptyList()) { _, old, new ->
         if (old != new) notifyDataSetChanged()
     }
+
+    private val clickItem = PublishSubject.create<HomeReducer.ProductItemView>()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -55,11 +60,16 @@ class ProductAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ProductViewHolder && items.isNotEmpty()) {
             val item = items[position - 1]
+            holder.itemView.setOnClickListener {
+                clickItem.onNext(item)
+            }
             holder.bind(item)
         } else if (holder is ProductHeaderViewHolder) {
             holder.bind()
         }
     }
+
+    fun clickItem(): Observable<HomeReducer.ProductItemView> = clickItem.hide()
 
     override fun getItemViewType(position: Int): Int =
         if (isFirstPosition(position))
@@ -90,7 +100,7 @@ class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             } else {
             textViewDiscount.makeGone()
         }
-        imageViewProductPhoto.loadProductPhoto(item.photo)
+        imageViewProductPhoto.loadProductPhoto(item.photos[0])
         imageViewUserPhoto.loadUserPhoto(item.avatar)
     }
 }

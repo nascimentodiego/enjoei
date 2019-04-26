@@ -16,7 +16,7 @@
 package br.com.enjoei.app.presentation.feature.home
 
 import android.text.SpannableString
-import br.com.enjoei.app.data.remote.model.ProductResponse
+import br.com.enjoei.app.domain.model.Product
 import br.com.enjoei.app.presentation.base.Reducer
 import br.com.enjoei.app.presentation.extensions.asBRL
 import br.com.enjoei.app.presentation.extensions.strikethroughSpan
@@ -62,14 +62,12 @@ class HomeReducer : Reducer<HomeScreenState?, HomeScreenChange> {
             }
         } ?: HomeScreenState()
 
-    private fun productMapper(productRsponse: ProductResponse): ProductItemView {
+    private fun productMapper(productRsponse: Product): ProductItemView {
 
         val spannablePrice = SpannableString(productRsponse.originalPrice.asBRL(true))
         spannablePrice.strikethroughSpan()
 
         val user = productRsponse.user.avatar
-        val photo = productRsponse.photos[0]
-
         val discount = if (productRsponse.discount == 0.0) "" else "-${productRsponse.discount.toInt()}%"
 
         return ProductItemView(
@@ -81,19 +79,20 @@ class HomeReducer : Reducer<HomeScreenState?, HomeScreenChange> {
             oldPrice = spannablePrice,
             discount = discount,
             avatar = PhotoView(user.id, user.crop, user.gravity),
-            photo = PhotoView(photo.id, photo.crop, photo.gravity)
+            photos = productRsponse.photos.map { photo -> PhotoView(photo.id, photo.crop, photo.gravity) }
         )
     }
 
     data class ProductItemView(
         val productId: Int = 0,
         val title: String,
+        val content: String = "",
         val size: String = "",
         val likes: String = "0",
         val oldPrice: SpannableString = SpannableString(""),
         val price: String = "",
         val discount: String = "",
-        val photo: PhotoView = PhotoView(),
+        val photos: List<PhotoView> = emptyList(),
         val avatar: PhotoView = PhotoView()
     )
 

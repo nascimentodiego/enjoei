@@ -6,14 +6,15 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupWithNavController
 import br.com.enjoei.app.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val navController: NavController by lazy { Navigation.findNavController(this, R.id.nav_host_fragment) }
-
+    private lateinit var appBarConfiguration: AppBarConfiguration
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,28 +22,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavigation() {
+        appBarConfiguration = AppBarConfiguration.Builder(setOf(R.id.mainFragment)).build()
 
+        bottomNavigation.setupWithNavController(navController)
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigation_home -> {
-                    findNavController(R.id.nav_host_fragment).navigate(R.id.action_mainFragment_to_home)
+                R.id.mainFragment -> {
+                    navController.navigate(R.id.action_mainFragment_to_home)
                 }
-                R.id.navigation_search -> {
-                    findNavController(R.id.nav_host_fragment).navigate(R.id.action_mainFragment_to_search)
+                R.id.search -> {
+                    navController.navigate(R.id.action_mainFragment_to_search)
                 }
-                R.id.navigation_sell -> {
-                    findNavController(R.id.nav_host_fragment).navigate(R.id.action_mainFragment_to_sell)
+                R.id.sell -> {
+                    navController.navigate(R.id.action_mainFragment_to_sell)
                 }
-                R.id.navigation_message -> {
-                    findNavController(R.id.nav_host_fragment).navigate(R.id.action_mainFragment_to_messageFragment)
+                R.id.perfilFragment -> {
+                    navController.navigate(R.id.action_mainFragment_to_messageFragment)
                 }
                 else -> {
-                    findNavController(R.id.nav_host_fragment).navigate(R.id.action_mainFragment_to_perfilFragment)
+                    navController.navigate(R.id.action_mainFragment_to_perfilFragment)
                 }
             }
-
             true
         }
         bottomNavigation.menu.getItem(0).isChecked = true
     }
+
+    override fun onSupportNavigateUp() =
+        findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
 }

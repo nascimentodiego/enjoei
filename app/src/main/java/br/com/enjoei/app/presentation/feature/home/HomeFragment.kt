@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.enjoei.app.R
@@ -60,7 +61,7 @@ class HomeFragment : Fragment() {
 
     private fun setupRecycleView() {
         val spacingItemDecoration =
-            SpacingItemDecoration(resources.getDimensionPixelOffset(R.dimen.small))
+            SpacingItemDecoration(resources.getDimensionPixelOffset(R.dimen.smallest))
         val numbOfColumns: Int = resources.getInteger(R.integer.number_of_columns)
         val manager = GridLayoutManager(context, numbOfColumns)
         manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -93,6 +94,11 @@ class HomeFragment : Fragment() {
                 .clicks(buttonTryAgain)
                 .map { HomeViewModel.HomeIntention.LoadScreen }
 
+        val clickItem = adapterProduct.clickItem()
+            .map {
+                HomeViewModel.HomeIntention.LoadProductDetail(it)
+            }
+
         val loadMore = RxRecyclerView
             .scrollEvents(recyclerView)
             .filter {
@@ -107,7 +113,7 @@ class HomeFragment : Fragment() {
                 HomeViewModel.HomeIntention.LoadMore
             }
 
-        val observable: Observable<HomeViewModel.HomeIntention> = Observable.mergeArray(tryAgainClick, loadMore)
+        val observable = Observable.mergeArray(tryAgainClick, loadMore, clickItem)
 
         viewModel.bindIntent(observable)
     }
@@ -116,7 +122,7 @@ class HomeFragment : Fragment() {
         viewModel.sideEffect.observeNonNull(this) {
             it.getContentIfNotHandled()?.let { sideEffect ->
                 when (sideEffect) {
-                    is HomeViewModel.HomeSideEffect.NavigateToDetail -> navigateToDetailScreen(sideEffect.id)
+                    is HomeViewModel.HomeSideEffect.NavigateToDetail -> navigateToDetailScreen(sideEffect.productView)
                 }
             }
         }
@@ -159,7 +165,8 @@ class HomeFragment : Fragment() {
         swipeRefresh.isRefreshing = false
     }
 
-    private fun navigateToDetailScreen(productId: Long) {
+    private fun navigateToDetailScreen(product: HomeReducer.ProductItemView) {
+        findNavController().navigate(R.id.action_mainFragment_to_productDetail)
     }
 
 }

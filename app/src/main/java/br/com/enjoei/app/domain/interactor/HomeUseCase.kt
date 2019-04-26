@@ -15,7 +15,7 @@
  */
 package br.com.enjoei.app.domain.interactor
 
-import br.com.enjoei.app.data.remote.model.ProductListResponse
+import br.com.enjoei.app.domain.model.ProductList
 import br.com.enjoei.app.domain.repository.HomeRepositoryContract
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
@@ -26,23 +26,23 @@ class HomeUseCase(private val repository: HomeRepositoryContract) : HomeUseCaseC
     private var currentPage = 1
     private var totalPage = 1
 
-    override fun initLoad(): Observable<ProductListResponse> =
+    override fun initLoad(): Observable<ProductList> =
         repository.fetchProductList()
             .map {
                 it.apply {
-                    currentPage = this.paginationResponse.current
-                    totalPage = this.paginationResponse.total
+                    currentPage = this.pagination.current
+                    totalPage = this.pagination.total
                 }
             }
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
 
-    override fun getProductListByPage(): Observable<ProductListResponse> =
+    override fun getProductListByPage(): Observable<ProductList> =
         repository.getProductListByPage(currentPage)
             .map {
                 it.apply {
-                    currentPage = this.paginationResponse.current
-                    totalPage = this.paginationResponse.total
+                    currentPage = this.pagination.current
+                    totalPage = this.pagination.total
                 }
             }
             .subscribeOn(Schedulers.io())

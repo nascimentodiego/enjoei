@@ -15,7 +15,7 @@
  */
 package br.com.enjoei.app.data.remote
 
-import br.com.enjoei.app.data.remote.model.ProductListResponse
+import br.com.enjoei.app.domain.model.ProductList
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -24,6 +24,6 @@ import retrofit2.http.Query
 interface ProductApi {
 
     @GET("products/home")
-    fun getProducts(@Query("page") page: Int): Observable<ProductListResponse>
+    fun getProducts(@Query("page") page: Int): Observable<ProductList>
 
 }

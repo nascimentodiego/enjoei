@@ -15,8 +15,8 @@
  */
 package br.com.enjoei.app.presentation.feature.home
 
-import br.com.enjoei.app.data.remote.model.ProductListResponse
 import br.com.enjoei.app.domain.interactor.HomeUseCaseContract
+import br.com.enjoei.app.domain.model.ProductList
 import br.com.enjoei.app.presentation.base.*
 import br.com.enjoei.app.presentation.feature.home.HomeViewModel.*
 import br.com.enjoei.app.presentation.util.SingleEvent
@@ -87,10 +87,10 @@ class HomeViewModel(
             HomeScreenChange.LoadingMore
         )
 
-    private fun loadState(response: ProductListResponse) =
+    private fun loadState(response: ProductList) =
         reducer.reducer(_state.value, HomeScreenChange.HomeScreenFetched(response))
 
-    private fun loadMoreState(response: ProductListResponse) =
+    private fun loadMoreState(response: ProductList) =
         reducer.reducer(_state.value, HomeScreenChange.HomeScreenFetchMore(response))
 
     private fun errorState(throwable: Throwable?): HomeScreenState {
@@ -104,17 +104,17 @@ class HomeViewModel(
         baseIntentions
             .ofType(HomeIntention.LoadProductDetail::class.java)
             .map {
-                HomeSideEffect.NavigateToDetail(it.productId)
+                HomeSideEffect.NavigateToDetail(it.productView)
             }
 
     sealed class HomeIntention : BaseIntention {
         object LoadScreen : HomeIntention()
         object LoadMore : HomeIntention()
-        data class LoadProductDetail(val productId: Long) : HomeIntention()
+        data class LoadProductDetail(val productView: HomeReducer.ProductItemView) : HomeIntention()
     }
 
     sealed class HomeSideEffect : BaseSideEffect {
-        data class NavigateToDetail(val id: Long) : HomeSideEffect()
+        data class NavigateToDetail(val productView: HomeReducer.ProductItemView) : HomeSideEffect()
     }
 
     data class HomeScreenState(
@@ -129,8 +129,8 @@ class HomeViewModel(
     sealed class HomeScreenChange : BaseChange {
         object Loading : HomeScreenChange()
         object LoadingMore : HomeScreenChange()
-        data class HomeScreenFetched(val response: ProductListResponse) : HomeScreenChange()
-        data class HomeScreenFetchMore(val response: ProductListResponse) : HomeScreenChange()
+        data class HomeScreenFetched(val response: ProductList) : HomeScreenChange()
+        data class HomeScreenFetchMore(val response: ProductList) : HomeScreenChange()
         data class Error(val throwable: Throwable?) : HomeScreenChange()
     }
 }

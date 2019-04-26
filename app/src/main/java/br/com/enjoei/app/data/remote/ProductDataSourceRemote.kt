@@ -16,17 +16,17 @@
 package br.com.enjoei.app.data.remote
 
 import br.com.enjoei.app.data.ProductDataSource
-import br.com.enjoei.app.data.remote.model.ProductListResponse
+import br.com.enjoei.app.domain.model.ProductList
 import io.reactivex.Observable
 
 
 class ProductDataSourceRemote(private val api: ProductApi) : ProductDataSource {
     private val initialPage = 1
 
-    override fun getProductListByPage(page: Int): Observable<ProductListResponse> =
+    override fun getProductListByPage(page: Int): Observable<ProductList> =
         api.getProducts(page)
 
-    override fun fetchProductList(): Observable<ProductListResponse> =
+    override fun fetchProductList(): Observable<ProductList> =
         api.getProducts(initialPage)
 
 }

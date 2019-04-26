@@ -13,12 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.enjoei.app.data.remote.model
+package br.com.enjoei.app.domain.model
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
+data class Photo(
+    @field: Json(name = "public_id") val id: String = "",
+    val crop: String = "",
+    val gravity: String = ""
 
-data class PaginationResponse(
-    @field: Json(name = "current_page") val current: Int = 1,
-    @field: Json(name = "total_pages") val total: Int = 1
 )
