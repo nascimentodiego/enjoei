@@ -1,0 +1,97 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+apply from: 'api.gradle'
+
+apply from: "$rootDir/tools/quality/ktlint.gradle"
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "br.com.enjoei.app"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "br.com.enjoei.app.EnjoeiTestRunner"
+    }
+    androidExtensions {
+        experimental = true
+    }
+
+    def API_BASE = "API_BASE"
+    def API_BASE_CLOUDINARY = "API_BASE_CLOUDINARY"
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.buildConfigField "String", API_BASE, "\"$getUrlProperty\""
+        variant.buildConfigField "String", API_BASE_CLOUDINARY, "\"$getUrlCloudinaryProperty\""
+
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$support_library_version"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview"
+    implementation "androidx.cardview:cardview:$cardview"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.navigation:navigation-fragment$nav_version"
+    implementation "androidx.navigation:navigation-ui$nav_version"
+    implementation "com.google.android.material:material:$material"
+
+    implementation "com.github.ittianyu:BottomNavigationViewEx:$bottom_navigation_view_ex"
+    implementation "com.cloudinary:cloudinary-android:$cloudinary"
+    implementation "com.airbnb.android:lottie:$lottie_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
+    implementation "com.squareup.moshi:moshi:$moshi"
+
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_codegen"
+
+    // Ktlint
+    ktlint "com.github.shyiko:ktlint:$ktlint_version"
+
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$adapter_rxjava2"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rx_binding"
+    implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:$rx_binding"
+    implementation "com.github.bumptech.glide:glide:$glide"
+
+    implementation "org.koin:koin-android:$koin"
+    implementation "org.koin:koin-androidx-viewmodel:$koin"
+
+    testImplementation "junit:junit:$junit"
+    testImplementation "org.koin:koin-test:$koin"
+    testImplementation "androidx.arch.core:core-testing:$coreTesting"
+    testImplementation "org.mockito:mockito-core:$mockito"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp"
+
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$okhttp"
+    androidTestImplementation "androidx.test:runner:$runner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_core"
+    androidTestImplementation "androidx.test:runner:$runner"
+    androidTestImplementation "androidx.test:rules:$androidxTest"
+    androidTestImplementation "androidx.test:monitor:1.1.0"
+    androidTestImplementation "br.com.concretesolutions:requestmatcher:$request_matcher"
+    androidTestImplementation "com.squareup.burst:burst-junit4:$burst"
+
+}

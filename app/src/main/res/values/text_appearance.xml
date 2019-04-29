@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Typography -->
+    <style name="Text">
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
+
+    <style name="Text.Light">
+        <item name="android:fontFamily">@font/proxima_nova_light</item>
+    </style>
+
+    <style name="Text.Regular">
+        <item name="android:fontFamily">@font/proxima_nova_regular</item>
+    </style>
+
+    <style name="Text.Bold">
+        <item name="android:fontFamily">@font/proxima_nova_bold</item>
+    </style>
+
+    <style name="Text.SemiBold">
+        <item name="android:fontFamily">@font/proxima_nova_semibold</item>
+    </style>
+
+    <style name="Text.SemiBold.16sp">
+        <item name="android:textSize">@dimen/textSize16</item>
+    </style>
+
+    <style name="Text.SemiBold.18sp">
+        <item name="android:textSize">@dimen/textSize18</item>
+    </style>
+
+    <style name="Text.SemiBold.22sp">
+        <item name="android:textSize">@dimen/textSize22</item>
+    </style>
+
+    <style name="Text.Regular.12sp">
+        <item name="android:textSize">@dimen/textSize12</item>
+    </style>
+
+    <style name="Text.Regular.14sp">
+        <item name="android:textSize">@dimen/textSize14</item>
+    </style>
+
+    <style name="Text.Regular.16sp">
+        <item name="android:textSize">@dimen/textSize16</item>
+    </style>
+
+    <style name="Text.Light.14p">
+        <item name="android:textSize">@dimen/textSize14</item>
+    </style>
+
+    <style name="Text.Light.16sp">
+        <item name="android:textSize">@dimen/textSize16</item>
+    </style>
+
+    <style name="Text.Light.22sp">
+        <item name="android:textSize">@dimen/textSize22</item>
+    </style>
+
+    <style name="Text.Bold.16sp">
+        <item name="android:textSize">@dimen/textSize16</item>
+    </style>
+
+    <style name="Text.Bold.14sp">
+        <item name="android:textSize">@dimen/textSize14</item>
+    </style>
+
+
+</resources>

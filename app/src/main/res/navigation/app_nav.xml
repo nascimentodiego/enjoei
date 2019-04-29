@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/main_nav"
+            app:startDestination="@id/mainFragment">
+    <fragment
+            android:id="@+id/mainFragment"
+            android:label="Listagem de produtos"
+            android:name="br.com.enjoei.app.presentation.feature.home.HomeFragment"
+            tools:layout="@layout/fragment_home">
+    </fragment>
+    <fragment android:id="@+id/productDetail"
+              android:name="br.com.enjoei.app.presentation.feature.product.ProductDetailFragment"
+              tools:layout="@layout/fragment_product_detail"
+              android:label="Detalhe do produto">
+
+        <argument
+                android:name="product"
+                app:argType="br.com.enjoei.app.presentation.model.ProductItemView"/>
+
+    </fragment>
+    <fragment android:id="@+id/search"
+              android:label="Busca de Produtos"
+              android:name="br.com.enjoei.app.presentation.feature.search.SearchFragment"
+              tools:layout="@layout/fragment_search"/>
+    <fragment android:id="@+id/sell"
+              android:label="Venda de produto"
+              android:name="br.com.enjoei.app.presentation.feature.sell.SellFragment"
+              tools:layout="@layout/fragment_sell"/>
+    <fragment android:id="@+id/messageFragment"
+              android:name="br.com.enjoei.app.presentation.feature.message.MessageFragment"
+              android:label="Mensagens"
+              tools:layout="@layout/fragment_message"/>
+    <fragment android:id="@+id/perfilFragment"
+              android:name="br.com.enjoei.app.presentation.feature.perfil.PerfilFragment"
+              android:label="fragment_perfil"
+              tools:layout="@layout/fragment_perfil"/>
+
+    <action android:id="@+id/action_mainFragment_to_home"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+
+    <action android:id="@+id/action_mainFragment_to_search"
+            app:destination="@id/search"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+    <action android:id="@+id/action_mainFragment_to_sell"
+            app:destination="@id/sell"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+    <action android:id="@+id/action_mainFragment_to_productDetail"
+            app:destination="@id/productDetail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim">
+        <argument
+                android:name="product"
+                app:argType="br.com.enjoei.app.presentation.model.ProductItemView"/>
+    </action>
+    <action android:id="@+id/action_mainFragment_to_messageFragment"
+            app:destination="@id/messageFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+    <action android:id="@+id/action_mainFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+
+
+</navigation>

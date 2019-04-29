@@ -1,0 +1,16 @@
+def buildProperties = new Properties()
+def path = "$rootDir/tools/signing/api.properties"
+
+file(path).withInputStream {
+    buildProperties.load(it)
+}
+
+ext.getUrlProperty = { ->
+    return buildProperties.getProperty("base.url")
+}
+
+ext.getUrlCloudinaryProperty = { ->
+    return buildProperties.getProperty("base.urlCloudinary")
+}
+
+

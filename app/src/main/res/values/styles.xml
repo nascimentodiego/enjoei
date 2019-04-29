@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="toolbarStyle">@style/DefaultToolbarStyle</item>
+    </style>
+
+    <style name="CustomButton" parent="Base.Widget.AppCompat.Button">
+        <item name="android:textAppearance">@style/Text.SemiBold.16sp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/pink</item>
+        <item name="android:padding">@dimen/normal</item>
+    </style>
+
+    <style name="DefaultToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="titleTextAppearance">@style/Text.Regular.16sp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+</resources>
